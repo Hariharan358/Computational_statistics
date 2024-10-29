@@ -1,0 +1,25 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+iris = sns.load_dataset('iris')
+
+description = iris.describe()
+print("Statistical Description of the Iris Dataset:")
+print(description)
+
+plt.figure(figsize=(14, 6))
+
+plt.subplot(1, 2, 1)
+sns.boxplot(x=iris['petal_length'])
+plt.title('Box Plot of Petal Length')
+plt.xlabel('Petal Length (cm)')
+
+plt.subplot(1, 2, 2)
+sns.kdeplot(iris['petal_length'], fill=True)
+plt.title('Density Plot of Petal Length')
+plt.xlabel('Petal Length (cm)')
+plt.ylabel('Density')
+
+plt.tight_layout()
+plt.show()
