@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+iris = load_iris()
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+print("Total number of rows and columns:")
+print(iris_df.shape)
+mean_values = iris_df.mean()
+sd_values = iris_df.std()
+stats_df = pd.DataFrame({
+    'Mean': mean_values,
+    'Standard Deviation': sd_values
+})
+print("\nMean and Standard Deviation for each attribute:")
+print(stats_df)
+for column in iris_df.columns:
+    plt.figure(figsize=(12, 6))
+    plt.subplot(1, 2, 1)
+    sns.histplot(iris_df[column], kde=True, stat='density', linewidth=0, color='blue')
+    plt.title(f'Normal Distribution of {column}')
+    plt.subplot(1, 2, 2)
+    sns.histplot(iris_df[column], bins=20, color='blue')
+    plt.title(f'Histogram of {column}')    
+    plt.tight_layout()
+    plt.show()
